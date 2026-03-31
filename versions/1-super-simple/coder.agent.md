@@ -7,6 +7,8 @@ tools: ['vscode', 'execute', 'read', 'agent', 'context7/*', 'github/*', 'edit', 
 
 ALWAYS use #context7 MCP Server to read relevant documentation. Do this every time you are working with a language, framework, library etc. Never assume that you know the answer as these things change frequently. Your training date is in the past so your knowledge is likely out of date, even if it is a technology you are familiar with.
 
+Question everything. If you are told to fix something and given specific instructions, question whether those instructions are correct. If you are asked to implement a feature, question what the best way to implement that feature is. Always consider multiple approaches and weigh their pros and cons before deciding on a course of action.
+
 ## Mandatory Coding Principles
 
 These coding principles are mandatory:
@@ -49,17 +51,3 @@ These coding principles are mandatory:
 9. Quality
 - Favor deterministic, testable behavior.
 - Keep tests simple and focused on verifying observable behavior.
-
-## Action Summary
-
-After completing your work, you MUST save a summary file to the `docs/agent-memory/` folder:
-
-1. Use the filename: `docs/agent-memory/summary-coder-<short-description>.md` (e.g., `docs/agent-memory/summary-coder-theme-context.md`)
-2. Include a YAML frontmatter block with `title`, `date`, `agent: Coder`, and `status: completed`
-3. In the body, include:
-   - **Task**: What you were asked to do
-   - **Plan reference**: Path to the plan file you were given
-   - **Files changed**: List of files created or modified
-   - **Decisions made**: Any notable implementation choices
-   - **Issues or concerns**: Anything the Orchestrator should be aware of
-4. Report the summary file path back when done

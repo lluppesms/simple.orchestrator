@@ -22,9 +22,7 @@ These are the only agents you can call. Each has a specific role:
 You MUST follow this structured execution pattern:
 
 ### Step 1: Get the Plan
-Call the Planner agent with the user's request. The Planner will save the plan as a file in the `docs/agent-memory/` folder and return the file path along with the implementation steps.
-
-**Capture the plan file path** — you will need it for every delegation in Steps 2–3.
+Call the Planner agent with the user's request. The Planner will return implementation steps.
 
 ### Step 2: Parse Into Phases
 The Planner's response includes **file assignments** for each step. Use these to determine parallelization:
@@ -55,9 +53,8 @@ Output your execution plan like this:
 For each phase:
 1. **Identify parallel tasks** — Tasks with no dependencies on each other
 2. **Spawn multiple subagents simultaneously** — Call agents in parallel when possible
-3. **Always include the plan file** — Every delegation prompt to Coder or Designer MUST include: "Read the full plan at `docs/agent-memory/<plan-file>.md` for complete context before starting."
-4. **Wait for all tasks in phase to complete** before starting next phase
-5. **Report progress** — After each phase, summarize what was completed
+3. **Wait for all tasks in phase to complete** before starting next phase
+4. **Report progress** — After each phase, summarize what was completed
 
 ### Step 4: Verify and Report
 After all phases complete, verify the work hangs together and report results.
@@ -79,12 +76,12 @@ After all phases complete, verify the work hangs together and report results.
 When delegating parallel tasks, you MUST explicitly scope each agent to specific files to prevent conflicts.
 
 ### Strategy 1: Explicit File Assignment
-In your delegation prompt, tell each agent exactly which files to create or modify, and always reference the plan:
+In your delegation prompt, tell each agent exactly which files to create or modify:
 
 ```
-Task 2.1 → Coder: "Read the full plan at docs/agent-memory/plan-dark-mode.md for complete context. Implement the theme context. Create src/contexts/ThemeContext.tsx and src/hooks/useTheme.ts"
+Task 2.1 → Coder: "Implement the theme context. Create src/contexts/ThemeContext.tsx and src/hooks/useTheme.ts"
 
-Task 2.2 → Coder: "Read the full plan at docs/agent-memory/plan-dark-mode.md for complete context. Create the toggle component in src/components/ThemeToggle.tsx"
+Task 2.2 → Coder: "Create the toggle component in src/components/ThemeToggle.tsx"
 ```
 
 ### Strategy 2: When Files Must Overlap
@@ -125,8 +122,6 @@ When delegating, describe WHAT needs to be done (the outcome), not HOW to do it.
 
 ### Step 1 — Call Planner
 > "Create an implementation plan for adding dark mode support to this app"
-
-Planner saves plan to `docs/agent-memory/plan-dark-mode.md` and returns the path.
 
 ### Step 2 — Parse response into phases
 ```
