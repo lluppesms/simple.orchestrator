@@ -49,17 +49,3 @@ These coding principles are mandatory:
 9. Quality
 - Favor deterministic, testable behavior.
 - Keep tests simple and focused on verifying observable behavior.
-
-## Action Summary
-
-After completing your work, you MUST save a summary file to the `docs/agent-memory/` folder:
-
-1. Use the filename: `docs/agent-memory/summary-coder-<short-description>.md` (e.g., `docs/agent-memory/summary-coder-theme-context.md`)
-2. Include a YAML frontmatter block with `title`, `date`, `agent: Coder`, and `status: completed`
-3. In the body, include:
-   - **Task**: What you were asked to do
-   - **Plan reference**: Path to the plan file you were given
-   - **Files changed**: List of files created or modified
-   - **Decisions made**: Any notable implementation choices
-   - **Issues or concerns**: Anything the Orchestrator should be aware of
-4. Report the summary file path back when done
